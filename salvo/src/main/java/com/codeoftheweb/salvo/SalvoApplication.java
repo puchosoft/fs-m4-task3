@@ -6,7 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
 
 @SpringBootApplication
 public class SalvoApplication {
@@ -19,10 +21,13 @@ public class SalvoApplication {
   @Bean
   public CommandLineRunner initData(PlayerRepository pRepository,
                                     GameRepository gRepository,
-                                    GamePlayerRepository gpRepository) {
+                                    GamePlayerRepository gpRepository,
+                                    ShipRepository sRepository) {
     return (args) -> {
 
       Game game;
+      GamePlayer gp;
+      Ship ship;
 
       // guardamos algunos players
       pRepository.save(new Player("j.bauer@ctu.gov"));
@@ -69,6 +74,116 @@ public class SalvoApplication {
       gpRepository.save(new GamePlayer(gRepository.getOne(7L), pRepository.getOne(4L)));
       gpRepository.save(new GamePlayer(gRepository.getOne(8L), pRepository.getOne(3L)));
       gpRepository.save(new GamePlayer(gRepository.getOne(8L), pRepository.getOne(4L)));
+
+      // guardamos algunas ships
+      ship = new Ship("Destroyer", gpRepository.getOne(1L));
+      ship.setLocations(new HashSet<>(Arrays.asList("H2", "H3", "H4")));
+      sRepository.save(ship);
+
+      ship = new Ship("Submarine", gpRepository.getOne(1L));
+      ship.setLocations(new HashSet<>(Arrays.asList("E1", "F1", "G1")));
+      sRepository.save(ship);
+
+      ship = new Ship("Patrol Boat", gpRepository.getOne(1L));
+      ship.setLocations(new HashSet<>(Arrays.asList("B4", "B5")));
+      sRepository.save(ship);
+
+      ship = new Ship("Destroyer", gpRepository.getOne(2L));
+      ship.setLocations(new HashSet<>(Arrays.asList("B5", "C5", "D5")));
+      sRepository.save(ship);
+
+      ship = new Ship("Patrol Boat", gpRepository.getOne(2L));
+      ship.setLocations(new HashSet<>(Arrays.asList("F1", "F2")));
+      sRepository.save(ship);
+
+      ship = new Ship("Destroyer", gpRepository.getOne(3L));
+      ship.setLocations(new HashSet<>(Arrays.asList("B5", "C5", "D5")));
+      sRepository.save(ship);
+
+      ship = new Ship("Patrol Boat", gpRepository.getOne(3L));
+      ship.setLocations(new HashSet<>(Arrays.asList("C6", "C7")));
+      sRepository.save(ship);
+
+      ship = new Ship("Submarine", gpRepository.getOne(4L));
+      ship.setLocations(new HashSet<>(Arrays.asList("A2", "A3", "A4")));
+      sRepository.save(ship);
+
+      ship = new Ship("Patrol Boat", gpRepository.getOne(4L));
+      ship.setLocations(new HashSet<>(Arrays.asList("G6", "H6")));
+      sRepository.save(ship);
+
+      ship = new Ship("Destroyer", gpRepository.getOne(5L));
+      ship.setLocations(new HashSet<>(Arrays.asList("B5", "C5", "D5")));
+      sRepository.save(ship);
+
+      ship = new Ship("Patrol Boat", gpRepository.getOne(5L));
+      ship.setLocations(new HashSet<>(Arrays.asList("C6", "C7")));
+      sRepository.save(ship);
+
+      ship = new Ship("Submarine", gpRepository.getOne(6L));
+      ship.setLocations(new HashSet<>(Arrays.asList("A2", "A3", "A4")));
+      sRepository.save(ship);
+
+      ship = new Ship("Patrol Boat", gpRepository.getOne(6L));
+      ship.setLocations(new HashSet<>(Arrays.asList("G6", "H6")));
+      sRepository.save(ship);
+
+      ship = new Ship("Destroyer", gpRepository.getOne(7L));
+      ship.setLocations(new HashSet<>(Arrays.asList("B5", "C5", "D5")));
+      sRepository.save(ship);
+
+      ship = new Ship("Patrol Boat", gpRepository.getOne(7L));
+      ship.setLocations(new HashSet<>(Arrays.asList("C6", "C7")));
+      sRepository.save(ship);
+
+      ship = new Ship("Submarine", gpRepository.getOne(8L));
+      ship.setLocations(new HashSet<>(Arrays.asList("A2", "A3", "A4")));
+      sRepository.save(ship);
+
+      ship = new Ship("Patrol Boat", gpRepository.getOne(8L));
+      ship.setLocations(new HashSet<>(Arrays.asList("G6", "H6")));
+      sRepository.save(ship);
+
+      ship = new Ship("Destroyer", gpRepository.getOne(9L));
+      ship.setLocations(new HashSet<>(Arrays.asList("B5", "C5", "D5")));
+      sRepository.save(ship);
+
+      ship = new Ship("Patrol Boat", gpRepository.getOne(9L));
+      ship.setLocations(new HashSet<>(Arrays.asList("C6", "C7")));
+      sRepository.save(ship);
+
+      ship = new Ship("Submarine", gpRepository.getOne(10L));
+      ship.setLocations(new HashSet<>(Arrays.asList("A2", "A3", "A4")));
+      sRepository.save(ship);
+
+      ship = new Ship("Patrol Boat", gpRepository.getOne(10L));
+      ship.setLocations(new HashSet<>(Arrays.asList("G6", "H6")));
+      sRepository.save(ship);
+
+      ship = new Ship("Destroyer", gpRepository.getOne(11L));
+      ship.setLocations(new HashSet<>(Arrays.asList("B5", "C5", "D5")));
+      sRepository.save(ship);
+
+      ship = new Ship("Patrol Boat", gpRepository.getOne(11L));
+      ship.setLocations(new HashSet<>(Arrays.asList("C6", "C7")));
+      sRepository.save(ship);
+
+      ship = new Ship("Destroyer", gpRepository.getOne(13L));
+      ship.setLocations(new HashSet<>(Arrays.asList("B5", "C5", "D5")));
+      sRepository.save(ship);
+
+      ship = new Ship("Patrol Boat", gpRepository.getOne(13L));
+      ship.setLocations(new HashSet<>(Arrays.asList("C6", "C7")));
+      sRepository.save(ship);
+
+      ship = new Ship("Submarine", gpRepository.getOne(14L));
+      ship.setLocations(new HashSet<>(Arrays.asList("A2", "A3", "A4")));
+      sRepository.save(ship);
+
+      ship = new Ship("Patrol Boat", gpRepository.getOne(14L));
+      ship.setLocations(new HashSet<>(Arrays.asList("G6", "H6")));
+      sRepository.save(ship);
+
     };
   }
 }

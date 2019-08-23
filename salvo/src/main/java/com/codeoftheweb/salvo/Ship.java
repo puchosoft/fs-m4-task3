@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Ship {
+ public class Ship {
 
   // ID automatico para la tabla "ships"
   @Id
@@ -18,7 +18,7 @@ public class Ship {
 
   // Relacion con la tabla "gamePlayers"
   @ManyToOne(fetch = FetchType.EAGER)
-  @JoinColumn(name = "gameplayer_id")
+  @JoinColumn(name = "gamePlayer_id")
   private GamePlayer gamePlayer;
 
   @ElementCollection
@@ -26,6 +26,11 @@ public class Ship {
   private Set<String> locations = new HashSet<>();
 
   public Ship(){
+  }
+
+  public Ship(String shipType, GamePlayer gamePlayer){
+    this.shipType = shipType;
+    this.gamePlayer = gamePlayer;
   }
 
   public long getId() {
@@ -54,5 +59,9 @@ public class Ship {
 
   public Set<String> getLocations(){
     return locations;
+  }
+
+  public void setLocations(Set<String> locations){
+    this.locations = locations;
   }
 }

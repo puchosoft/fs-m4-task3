@@ -25,11 +25,11 @@ public class GamePlayer {
   @JoinColumn(name = "player_id")
   private Player player;
 
-  private Date joinDate;
-
   // Relacion con la tabla "ships"
   @OneToMany(mappedBy = "gamePlayer", fetch = FetchType.EAGER)
-  Set<Ship> ships;
+  private Set<Ship> ships;
+
+  private Date joinDate;
 
   public GamePlayer() {
     joinDate = new Date();

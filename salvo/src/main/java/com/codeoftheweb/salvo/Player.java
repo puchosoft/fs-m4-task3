@@ -14,7 +14,7 @@ public class Player {
 
   // Relacion con la tabla "gamePlayers"
   @OneToMany(mappedBy = "player", fetch = FetchType.EAGER)
-  Set<GamePlayer> gamePlayers;
+  private Set<GamePlayer> gamePlayers;
 
   // ID automatico para la tabla "players"
   @Id

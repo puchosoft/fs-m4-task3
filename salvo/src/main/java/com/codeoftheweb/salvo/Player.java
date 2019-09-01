@@ -38,15 +38,6 @@ public class Player {
     return this.username;
   }
 
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
-  public void addGamePlayer(GamePlayer gamePlayer) {
-    gamePlayer.setPlayer(this);
-    gamePlayers.add(gamePlayer);
-  }
-
   @JsonIgnore
   public List<Game> getGames() {
     return gamePlayers.stream().map(gp -> gp.getGame()).collect(toList());

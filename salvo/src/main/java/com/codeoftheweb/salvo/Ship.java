@@ -28,9 +28,10 @@ import java.util.Set;
   public Ship(){
   }
 
-  public Ship(String shipType, GamePlayer gamePlayer){
+  public Ship(String shipType, GamePlayer gamePlayer, Set<String> locations){
     this.shipType = shipType;
     this.gamePlayer = gamePlayer;
+    this.locations = locations;
   }
 
   public long getId() {
@@ -41,27 +42,12 @@ import java.util.Set;
     return this.shipType;
   }
 
-  public void setShipType(String shipType){
-    this.shipType = shipType;
-  }
-
   public GamePlayer getGamePlayer() {
     return this.gamePlayer;
-  }
-
-  public void setGamePlayer(GamePlayer gamePlayer){
-    this.gamePlayer = gamePlayer;
-  }
-
-  public void addLocation(String location){
-    locations.add(location);
   }
 
   public Set<String> getLocations(){
     return locations;
   }
 
-  public void setLocations(Set<String> locations){
-    this.locations = locations;
-  }
 }

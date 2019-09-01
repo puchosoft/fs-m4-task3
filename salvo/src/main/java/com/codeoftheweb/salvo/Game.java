@@ -28,24 +28,21 @@ public class Game {
     this.creationDate = new Date();
   }
 
-  public Date getCreationDate() {
-    return this.creationDate;
+  public Game(long seconds) {
+    seconds = (Math.abs(seconds) > 11*3600 ? 0 : seconds);
+    this.creationDate = Date.from(new Date().toInstant().plusSeconds(seconds));
   }
 
-  public void setCreationDate(Date creationDate) {
-    this.creationDate = creationDate;
+  public Date getCreationDate() {
+    return this.creationDate;
   }
 
   public long getId() {
     return this.id;
   }
 
-  public void addGamePlayer(GamePlayer gamePlayer) {
-    gamePlayer.setGame(this);
-    gamePlayers.add(gamePlayer);
-  }
-
   public List<Player> getPlayers() {
     return gamePlayers.stream().map(gp -> gp.getPlayer()).collect(toList());
   }
+
 }

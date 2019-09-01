@@ -32,7 +32,6 @@ public class GamePlayer {
   private Date joinDate;
 
   public GamePlayer() {
-    joinDate = new Date();
   }
 
   public GamePlayer(Game game, Player player) {
@@ -49,32 +48,16 @@ public class GamePlayer {
     return game;
   }
 
-  public void setGame(Game game) {
-    this.game = game;
-  }
-
   public Player getPlayer() {
     return player;
-  }
-
-  public void setPlayer(Player player) {
-    this.player = player;
   }
 
   public Date getJoinDate() {
     return joinDate;
   }
 
-  public void setJoinDate(Date joinDate) {
-    this.joinDate = joinDate;
-  }
-
-  public void addShip(Ship ship){
-    ship.setGamePlayer(this);
-    ships.add(ship);
-  }
-
   public Set<Ship> getShips(){
     return ships;
   }
+
 }

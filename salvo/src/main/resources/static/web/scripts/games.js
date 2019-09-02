@@ -7,7 +7,7 @@ $(function(){
       var players = g.gamePlayers.map(gp => gp.player.email).join(', ');
       li+='<li>'+ date + ', ' + players + '</li>';
     });
-    $('#listGames').html(li);
+    $('#gameList').html(li);
   }
 
   function loadData(){

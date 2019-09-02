@@ -14,7 +14,7 @@ public class Game {
 
   // Relacion con la tabla "gamePlayers"
   @OneToMany(mappedBy = "game", fetch = FetchType.EAGER)
-  Set<GamePlayer> gamePlayers;
+  private Set<GamePlayer> gamePlayers;
 
   // ID automatico para la tabla "games"
   @Id
@@ -43,6 +43,10 @@ public class Game {
 
   public List<Player> getPlayers() {
     return gamePlayers.stream().map(gp -> gp.getPlayer()).collect(toList());
+  }
+
+  public Set<GamePlayer> getGamePlayers(){
+    return gamePlayers;
   }
 
 }

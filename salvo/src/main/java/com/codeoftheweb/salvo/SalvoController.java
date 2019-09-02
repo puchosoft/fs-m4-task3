@@ -1,6 +1,7 @@
 package com.codeoftheweb.salvo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,6 +18,9 @@ public class SalvoController {
   @Autowired
   private GameRepository gRepository;
 
+  @Autowired
+  private GamePlayerRepository gpRepository;
+
   // Genera un JSON con la informacion de los games en la URL /api/games
   @RequestMapping("/games")
   public List<Object> getGameInfo() {
@@ -28,7 +32,7 @@ public class SalvoController {
     Map<String, Object> dto = new LinkedHashMap<String, Object>();
     dto.put("id", game.getId());
     dto.put("created", game.getCreationDate());
-    dto.put("gamePlayers", game.gamePlayers.stream().map(gp -> makeGamePlayerDTO(gp)).collect(toList()));
+    dto.put("gamePlayers", game.getGamePlayers().stream().map(gp -> makeGamePlayerDTO(gp)).collect(toList()));
     return dto;
   }
 
@@ -44,7 +48,25 @@ public class SalvoController {
   private Map<String, Object> makePlayerDTO(Player player) {
     Map<String, Object> dto = new LinkedHashMap<String, Object>();
     dto.put("id", player.getId());
-    dto.put("username", player.getUsername());
+    dto.put("email", player.getUsername());
     return dto;
   }
+
+  // Genera un JSON con la informacion de un game especifico en la URL /api/game_view/nn
+  @RequestMapping("/game_view/{gamePlayerId}")
+  public Map<String, Object> getGameView(@PathVariable long gamePlayerId) {
+    GamePlayer gp = gpRepository.getOne(gamePlayerId);
+    Map<String, Object> game = makeGameDTO(gp.getGame());
+    game.put("ships", gp.getShips().stream().map(s -> makeShipDTO(s)).collect(toList()));
+    return game;
+  }
+
+  // Formato de salida para los objetos Ship
+  private Map<String, Object> makeShipDTO(Ship ship) {
+    Map<String, Object> dto = new LinkedHashMap<String, Object>();
+    dto.put("type", ship.getShipType());
+    dto.put("locations", ship.getLocations());
+    return dto;
+  }
+
 }
